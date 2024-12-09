@@ -1,0 +1,72 @@
+2024-12-09 15:30:45,646 - root - INFO - Starting the script.
+2024-12-09 15:30:45,646 - root - ERROR - An error occurred: Simulated error!
+2024-12-09 15:31:08,114 - root - INFO - Starting the script.
+2024-12-09 15:31:08,114 - root - ERROR - An error occurred: Simulated error!
+2024-12-09 15:45:50,106 - ingestion.fetch_rss - INFO - Fetching RSS feed from: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+2024-12-09 15:45:50,118 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): rss.nytimes.com:443
+2024-12-09 15:45:50,162 - urllib3.connectionpool - DEBUG - https://rss.nytimes.com:443 "GET /services/xml/rss/nyt/HomePage.xml HTTP/11" 200 10641
+2024-12-09 15:45:50,170 - charset_normalizer - DEBUG - Encoding detection: utf_8 is most likely the one.
+2024-12-09 15:45:50,181 - ingestion.fetch_rss - INFO - Successfully fetched RSS feed with 30 entries.
+2024-12-09 15:48:24,758 - ingestion.fetch_rss - INFO - Fetching RSS feed from: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+2024-12-09 15:48:24,763 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): rss.nytimes.com:443
+2024-12-09 15:48:24,910 - urllib3.connectionpool - DEBUG - https://rss.nytimes.com:443 "GET /services/xml/rss/nyt/HomePage.xml HTTP/11" 200 10636
+2024-12-09 15:48:24,919 - charset_normalizer - DEBUG - Encoding detection: utf_8 is most likely the one.
+2024-12-09 15:48:24,931 - ingestion.fetch_rss - INFO - Successfully fetched RSS feed with 30 entries.
+2024-12-09 15:58:19,328 - ingestion.fetch_rss - INFO - Fetching RSS feed from: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+2024-12-09 15:58:19,334 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): rss.nytimes.com:443
+2024-12-09 15:58:19,378 - urllib3.connectionpool - DEBUG - https://rss.nytimes.com:443 "GET /services/xml/rss/nyt/HomePage.xml HTTP/11" 200 10543
+2024-12-09 15:58:19,391 - charset_normalizer - DEBUG - Encoding detection: utf_8 is most likely the one.
+2024-12-09 15:58:19,405 - ingestion.fetch_rss - INFO - Successfully fetched RSS feed with 30 entries.
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,405 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,406 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,406 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,406 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,406 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,406 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,406 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,406 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,406 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,406 - parsing.parse_data - WARNING - Error while parsing entry: name 'validate_article' is not defined
+2024-12-09 15:58:19,406 - parsing.parse_data - INFO - Successfully parsed 0 articles.
+2024-12-09 15:59:14,252 - ingestion.fetch_rss - INFO - Fetching RSS feed from: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+2024-12-09 15:59:14,258 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): rss.nytimes.com:443
+2024-12-09 15:59:17,406 - urllib3.connectionpool - DEBUG - https://rss.nytimes.com:443 "GET /services/xml/rss/nyt/HomePage.xml HTTP/11" 200 10543
+2024-12-09 15:59:17,422 - charset_normalizer - DEBUG - Encoding detection: utf_8 is most likely the one.
+2024-12-09 15:59:17,437 - ingestion.fetch_rss - INFO - Successfully fetched RSS feed with 30 entries.
+2024-12-09 15:59:17,439 - parsing.parse_data - INFO - Successfully parsed 30 articles.
+2024-12-09 16:04:23,346 - __main__ - INFO - Starting to fetch and parse RSS feed.
+2024-12-09 16:04:23,348 - ingestion.fetch_rss - INFO - Fetching RSS feed from: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+2024-12-09 16:04:23,366 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): rss.nytimes.com:443
+2024-12-09 16:04:23,420 - urllib3.connectionpool - DEBUG - https://rss.nytimes.com:443 "GET /services/xml/rss/nyt/HomePage.xml HTTP/11" 200 10544
+2024-12-09 16:04:23,437 - charset_normalizer - DEBUG - Encoding detection: utf_8 is most likely the one.
+2024-12-09 16:04:23,451 - ingestion.fetch_rss - INFO - Successfully fetched RSS feed with 30 entries.
+2024-12-09 16:04:23,451 - parsing.parse_data - INFO - Successfully parsed 30 articles.
+2024-12-09 16:04:23,451 - __main__ - INFO - Pipeline completed successfully with 30 articles parsed.
+2024-12-09 16:07:54,854 - __main__ - INFO - Starting to fetch and parse RSS feed.
+2024-12-09 16:07:54,856 - ingestion.fetch_rss - INFO - Fetching RSS feed from: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+2024-12-09 16:07:54,860 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): rss.nytimes.com:443
+2024-12-09 16:07:54,899 - urllib3.connectionpool - DEBUG - https://rss.nytimes.com:443 "GET /services/xml/rss/nyt/HomePage.xml HTTP/11" 200 10550
+2024-12-09 16:07:54,909 - charset_normalizer - DEBUG - Encoding detection: utf_8 is most likely the one.
+2024-12-09 16:07:54,922 - ingestion.fetch_rss - INFO - Successfully fetched RSS feed with 30 entries.
+2024-12-09 16:07:54,922 - parsing.parse_data - INFO - Successfully parsed 30 articles.
+2024-12-09 16:07:54,922 - __main__ - INFO - Pipeline completed successfully with 30 articles parsed.
