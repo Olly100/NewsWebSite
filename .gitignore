@@ -3,4 +3,5 @@ venv/
 .env
 __pycache__/
 *.pyc
-*.sqlite3test_env/
+*.sqlite3
+test_env/
