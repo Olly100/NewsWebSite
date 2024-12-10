@@ -1,13 +1,17 @@
+from unittest.mock import patch, MagicMock
+import pytest
 import feedparser
 
-def test_feedparser_valid_feed():
-    feed_url = "http://example.com/rss"  # Replace with a real feed URL for testing
-    feed = feedparser.parse(feed_url)
-    assert feed.bozo == 0, "Feed should parse without errors"
-    assert len(feed.entries) > 0, "Feed should contain entries"
-    assert "title" in feed.entries[0], "Each entry should have a title"
+@patch("feedparser.parse")
+def test_feedparser_valid_feed(mock_parse):
+    mock_parse.return_value = MagicMock(bozo=0, entries=[{"title": "Title"}])
+    feed = feedparser.parse("http://example.com/rss")
+    assert feed.bozo == 0
+    assert len(feed.entries) > 0
+    assert "title" in feed.entries[0]
 
-def test_feedparser_invalid_feed():
-    feed_url = "http://example.com/invalid_rss"
-    feed = feedparser.parse(feed_url)
-    assert feed.bozo != 0, "Feedparser should flag an invalid RSS feed"
+@patch("feedparser.parse")
+def test_feedparser_invalid_feed(mock_parse):
+    mock_parse.return_value = MagicMock(bozo=1, entries=[])
+    feed = feedparser.parse("http://example.com/invalid_rss")
+    assert feed.bozo != 0

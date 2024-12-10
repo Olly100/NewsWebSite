@@ -1,0 +1,51 @@
+import sqlite3
+
+def initialize_database(db_name="news_ingestion.db"):
+    # Connect to SQLite database
+    connection = sqlite3.connect(db_name)
+    cursor = connection.cursor()
+
+    # Create rss_sources table with feed_type
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS rss_sources (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            feed_url TEXT NOT NULL UNIQUE,
+            source_name TEXT NOT NULL,
+            category TEXT,
+            feed_type TEXT DEFAULT 'RSS',
+            last_fetched TIMESTAMP,
+            status TEXT DEFAULT 'active'
+        )
+    ''')
+
+    # Create raw_feed table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS raw_feed (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            feed_url TEXT NOT NULL,
+            fetched_data TEXT NOT NULL,
+            fetched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    # Create parsed_articles table with enrichment fields
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS parsed_articles (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            description TEXT,
+            source TEXT NOT NULL,
+            published_date TIMESTAMP,
+            parsed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            derived_summary TEXT,
+            keywords TEXT
+        )
+    ''')
+
+    # Commit and close
+    connection.commit()
+    connection.close()
+    print(f"Database '{db_name}' initialized successfully!")
+
+if __name__ == "__main__":
+    initialize_database()
