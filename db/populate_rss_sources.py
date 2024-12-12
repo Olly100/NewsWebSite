@@ -12,15 +12,23 @@ def populate_rss_sources(db_name="news_ingestion.db"):
     connection = sqlite3.connect(db_name)
     cursor = connection.cursor()
 
-    # Insert feeds into the rss_sources table
+    # Insert or update feeds
     for feed_url, source_name, category, feed_type, status in rss_feeds:
         try:
+            # Try to insert a new feed
             cursor.execute('''
                 INSERT INTO rss_sources (feed_url, source_name, category, feed_type, status)
                 VALUES (?, ?, ?, ?, ?)
             ''', (feed_url, source_name, category, feed_type, status))
+            print(f"Added new feed: {feed_url}")
         except sqlite3.IntegrityError:
-            print(f"Feed {feed_url} already exists in the database.")
+            # If the feed already exists, optionally update it
+            cursor.execute('''
+                UPDATE rss_sources
+                SET source_name = ?, category = ?, feed_type = ?, status = ?
+                WHERE feed_url = ?
+            ''', (source_name, category, feed_type, status, feed_url))
+            print(f"Updated existing feed: {feed_url}")
 
     # Commit changes and close connection
     connection.commit()

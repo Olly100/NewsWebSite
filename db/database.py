@@ -17,7 +17,7 @@ def initialize_database(db_name="news_ingestion.db"):
             status TEXT DEFAULT 'active'
         )
     ''')
-
+    
     # Create raw_feed table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS raw_feed (
@@ -28,17 +28,19 @@ def initialize_database(db_name="news_ingestion.db"):
         )
     ''')
 
-    # Create parsed_articles table with enrichment fields
+    # Create parsed_articles table with UNIQUE constraint and link column
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS parsed_articles (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
             description TEXT,
             source TEXT NOT NULL,
+            link TEXT,
             published_date TIMESTAMP,
             parsed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             derived_summary TEXT,
-            keywords TEXT
+            keywords TEXT,
+            UNIQUE(title, source) -- Enforce uniqueness on title and source
         )
     ''')
 
