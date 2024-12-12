@@ -83,3 +83,277 @@
 2024-12-12 12:17:30,404 - INFO - MainPipeline - Parsed 63 articles.
 2024-12-12 12:17:30,408 - INFO - parsing.parse_data - Stored 63 articles.
 2024-12-12 12:17:30,408 - INFO - MainPipeline - Stored parsed articles in the database.
+2024-12-12 14:13:54,855 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:13:55,001 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 14:13:55,001 - INFO - MainPipeline - Fetched data from RSS feed.
+2024-12-12 14:13:55,001 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:13:55,001 - INFO - parsing.parse_data - Successfully parsed 63 articles.
+2024-12-12 14:13:55,001 - INFO - MainPipeline - Parsed 63 articles.
+2024-12-12 14:13:55,010 - INFO - parsing.parse_data - Stored 63 articles.
+2024-12-12 14:13:55,010 - INFO - MainPipeline - Stored parsed articles in the database.
+2024-12-12 14:22:08,947 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:22:09,062 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 14:22:09,062 - INFO - MainPipeline - Fetched data from RSS feed.
+2024-12-12 14:22:09,062 - ERROR - MainPipeline - An error occurred: name 'rss_feed' is not defined
+2024-12-12 14:25:21,209 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:25:21,310 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 14:25:21,311 - INFO - MainPipeline - Fetched data from RSS feed.
+2024-12-12 14:25:21,311 - ERROR - MainPipeline - An error occurred: name 'rss_feed' is not defined
+2024-12-12 14:25:47,453 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:25:47,543 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 14:25:47,543 - INFO - MainPipeline - Fetched data from RSS feed.
+2024-12-12 14:25:47,543 - ERROR - MainPipeline - An error occurred: name 'rss_feed' is not defined
+2024-12-12 14:31:02,330 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:35:12,858 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:36:43,679 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:40:04,574 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:40:04,735 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 14:40:04,735 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:40:04,735 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:40:04,735 - INFO - MainPipeline - Parsed 62 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 14:40:04,739 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:40:04,739 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 14:40:04,739 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:40:04,739 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:40:04,739 - INFO - MainPipeline - Parsed 62 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 14:40:04,741 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:40:04,741 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 14:40:04,741 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:40:04,741 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:40:04,741 - INFO - MainPipeline - Parsed 62 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 14:40:04,743 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:40:04,743 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 14:47:15,017 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:47:15,109 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 14:47:15,109 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:47:15,109 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:47:15,109 - INFO - MainPipeline - Parsed 62 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 14:47:15,111 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:47:15,111 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 14:47:15,111 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:47:15,112 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:47:15,112 - INFO - MainPipeline - Parsed 62 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 14:47:15,112 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:47:15,112 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 14:47:15,112 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:47:15,112 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:47:15,113 - INFO - MainPipeline - Parsed 62 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 14:47:15,113 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:47:15,113 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 14:47:36,643 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:47:36,724 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 14:47:36,724 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:47:36,724 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:47:36,724 - INFO - MainPipeline - Parsed 62 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 14:47:36,730 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:47:36,730 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 14:47:36,730 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:47:36,731 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:47:36,731 - INFO - MainPipeline - Parsed 62 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 14:47:36,733 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:47:36,733 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 14:47:36,733 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:47:36,733 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:47:36,733 - INFO - MainPipeline - Parsed 62 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 14:47:36,734 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:47:36,734 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 14:49:14,555 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:49:14,637 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 14:49:14,637 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:49:14,637 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:49:14,637 - INFO - MainPipeline - Parsed 62 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 14:49:14,642 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:49:14,642 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 14:49:14,642 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:49:14,642 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:49:14,642 - INFO - MainPipeline - Parsed 62 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 14:49:14,644 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:49:14,644 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 14:49:14,644 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:49:14,644 - INFO - parsing.parse_data - Successfully parsed 62 articles.
+2024-12-12 14:49:14,644 - INFO - MainPipeline - Parsed 62 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 14:49:14,647 - INFO - parsing.parse_data - Stored 62 articles.
+2024-12-12 14:49:14,647 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 14:50:36,592 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:50:36,984 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 14:50:36,984 - ERROR - MainPipeline - An error occurred: parse_feed() missing 1 required positional argument: 'rss_feed'
+2024-12-12 14:52:05,087 - INFO - MainPipeline - Starting the main function...
+2024-12-12 14:52:05,547 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 14:52:05,547 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:52:05,547 - INFO - parsing.parse_data - Successfully parsed 20 articles.
+2024-12-12 14:52:05,547 - INFO - MainPipeline - Parsed 20 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 14:52:05,550 - INFO - parsing.parse_data - Stored 20 articles.
+2024-12-12 14:52:05,550 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 14:52:05,550 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:52:05,551 - INFO - parsing.parse_data - Successfully parsed 32 articles.
+2024-12-12 14:52:05,551 - INFO - MainPipeline - Parsed 32 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 14:52:05,551 - INFO - parsing.parse_data - Stored 32 articles.
+2024-12-12 14:52:05,551 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 14:52:05,551 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 14:52:05,551 - INFO - parsing.parse_data - Successfully parsed 10 articles.
+2024-12-12 14:52:05,551 - INFO - MainPipeline - Parsed 10 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 14:52:05,552 - INFO - parsing.parse_data - Stored 10 articles.
+2024-12-12 14:52:05,552 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 15:00:45,330 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:00:45,552 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:00:45,553 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:00:45,553 - INFO - parsing.parse_data - Successfully parsed 20 articles.
+2024-12-12 15:00:45,553 - INFO - MainPipeline - Parsed 20 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 15:00:45,570 - INFO - parsing.parse_data - Stored 20 articles.
+2024-12-12 15:00:45,627 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 15:00:45,632 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:00:45,634 - INFO - parsing.parse_data - Successfully parsed 32 articles.
+2024-12-12 15:00:45,634 - INFO - MainPipeline - Parsed 32 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 15:00:45,643 - INFO - parsing.parse_data - Stored 32 articles.
+2024-12-12 15:00:45,644 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 15:00:45,644 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:00:45,644 - INFO - parsing.parse_data - Successfully parsed 10 articles.
+2024-12-12 15:00:45,644 - INFO - MainPipeline - Parsed 10 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 15:00:45,655 - INFO - parsing.parse_data - Stored 10 articles.
+2024-12-12 15:00:45,658 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 15:02:09,489 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:02:09,656 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:02:09,657 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:02:09,658 - INFO - parsing.parse_data - Successfully parsed 20 articles.
+2024-12-12 15:02:09,658 - INFO - MainPipeline - Parsed 20 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 15:02:09,660 - INFO - parsing.parse_data - Stored 20 articles.
+2024-12-12 15:02:09,660 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 15:02:09,660 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:02:09,661 - INFO - parsing.parse_data - Successfully parsed 32 articles.
+2024-12-12 15:02:09,661 - INFO - MainPipeline - Parsed 32 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 15:02:09,662 - INFO - parsing.parse_data - Stored 32 articles.
+2024-12-12 15:02:09,663 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 15:02:09,663 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:02:09,663 - INFO - parsing.parse_data - Successfully parsed 10 articles.
+2024-12-12 15:02:09,663 - INFO - MainPipeline - Parsed 10 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 15:02:09,666 - INFO - parsing.parse_data - Stored 10 articles.
+2024-12-12 15:02:09,666 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 15:06:23,464 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:06:23,585 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:06:23,586 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:06:23,586 - INFO - parsing.parse_data - Successfully parsed 20 articles.
+2024-12-12 15:06:23,586 - INFO - MainPipeline - Parsed 20 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 15:06:23,589 - INFO - parsing.parse_data - Stored 20 articles.
+2024-12-12 15:06:23,589 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 15:06:23,590 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:06:23,590 - INFO - parsing.parse_data - Successfully parsed 32 articles.
+2024-12-12 15:06:23,590 - INFO - MainPipeline - Parsed 32 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 15:06:23,591 - INFO - parsing.parse_data - Stored 32 articles.
+2024-12-12 15:06:23,591 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 15:06:23,591 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:06:23,592 - INFO - parsing.parse_data - Successfully parsed 10 articles.
+2024-12-12 15:06:23,592 - INFO - MainPipeline - Parsed 10 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 15:06:23,593 - INFO - parsing.parse_data - Stored 10 articles.
+2024-12-12 15:06:23,593 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 15:12:05,374 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:12:05,515 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:12:05,515 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:12:05,516 - INFO - parsing.parse_data - Successfully parsed 20 articles.
+2024-12-12 15:12:05,516 - INFO - MainPipeline - Parsed 20 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 15:12:05,537 - INFO - parsing.parse_data - Stored 20 articles.
+2024-12-12 15:12:05,537 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 15:12:05,537 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:12:05,537 - INFO - parsing.parse_data - Successfully parsed 32 articles.
+2024-12-12 15:12:05,537 - INFO - MainPipeline - Parsed 32 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 15:12:05,538 - INFO - parsing.parse_data - Stored 32 articles.
+2024-12-12 15:12:05,538 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 15:12:05,538 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:12:05,538 - INFO - parsing.parse_data - Successfully parsed 10 articles.
+2024-12-12 15:12:05,538 - INFO - MainPipeline - Parsed 10 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 15:12:05,539 - INFO - parsing.parse_data - Stored 10 articles.
+2024-12-12 15:12:05,539 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 15:18:18,520 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:18:18,631 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:18:18,631 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:18:18,631 - INFO - parsing.parse_data - Successfully parsed 20 articles.
+2024-12-12 15:18:18,631 - INFO - MainPipeline - Parsed 20 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 15:18:18,633 - INFO - parsing.parse_data - Stored 20 articles.
+2024-12-12 15:18:18,633 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 15:18:18,633 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:18:18,633 - INFO - parsing.parse_data - Successfully parsed 32 articles.
+2024-12-12 15:18:18,633 - INFO - MainPipeline - Parsed 32 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 15:18:18,634 - INFO - parsing.parse_data - Stored 32 articles.
+2024-12-12 15:18:18,634 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 15:18:18,634 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:18:18,634 - INFO - parsing.parse_data - Successfully parsed 10 articles.
+2024-12-12 15:18:18,634 - INFO - MainPipeline - Parsed 10 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 15:18:18,634 - INFO - parsing.parse_data - Stored 10 articles.
+2024-12-12 15:18:18,634 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 15:19:15,605 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:19:15,686 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:19:15,686 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:19:15,686 - INFO - parsing.parse_data - Successfully parsed 20 articles.
+2024-12-12 15:19:15,686 - INFO - MainPipeline - Parsed 20 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 15:19:15,687 - INFO - parsing.parse_data - Stored 20 articles.
+2024-12-12 15:19:15,687 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 15:19:15,687 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:19:15,687 - INFO - parsing.parse_data - Successfully parsed 32 articles.
+2024-12-12 15:19:15,688 - INFO - MainPipeline - Parsed 32 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 15:19:15,688 - INFO - parsing.parse_data - Stored 32 articles.
+2024-12-12 15:19:15,688 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 15:19:15,688 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:19:15,688 - INFO - parsing.parse_data - Successfully parsed 10 articles.
+2024-12-12 15:19:15,688 - INFO - MainPipeline - Parsed 10 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 15:19:15,688 - INFO - parsing.parse_data - Stored 10 articles.
+2024-12-12 15:19:15,688 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 15:26:22,349 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:26:22,510 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:26:22,510 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:26:22,510 - INFO - parsing.parse_data - Successfully parsed 20 articles.
+2024-12-12 15:26:22,510 - INFO - MainPipeline - Parsed 20 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 15:26:22,512 - INFO - parsing.parse_data - Stored 20 articles.
+2024-12-12 15:26:22,512 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 15:26:22,512 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:26:22,512 - INFO - parsing.parse_data - Successfully parsed 32 articles.
+2024-12-12 15:26:22,512 - INFO - MainPipeline - Parsed 32 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 15:26:22,512 - INFO - parsing.parse_data - Stored 32 articles.
+2024-12-12 15:26:22,512 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 15:26:22,512 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:26:22,512 - INFO - parsing.parse_data - Successfully parsed 10 articles.
+2024-12-12 15:26:22,512 - INFO - MainPipeline - Parsed 10 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 15:26:22,513 - INFO - parsing.parse_data - Stored 10 articles.
+2024-12-12 15:26:22,513 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.
+2024-12-12 15:31:52,652 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:31:52,738 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:31:52,738 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:31:52,740 - ERROR - MainPipeline - An error occurred: time data 'Mon, 9 Dec 2024 06:16:00 +0000' does not match format '%a, %d %b %Y %H:%M:%S %Z'
+2024-12-12 15:33:30,223 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:33:31,091 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:33:31,091 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:33:31,093 - INFO - parsing.parse_data - Successfully parsed 20 articles.
+2024-12-12 15:33:31,093 - INFO - MainPipeline - Parsed 20 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 15:33:31,094 - INFO - parsing.parse_data - Stored 20 articles.
+2024-12-12 15:33:31,094 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 15:33:31,094 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:33:31,095 - ERROR - MainPipeline - An error occurred: time data 'Thu, 12 Dec 2024 13:04:42 GMT' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:36:20,218 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:36:22,553 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:36:22,553 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:36:22,555 - ERROR - MainPipeline - An error occurred: time data 'Mon, 9 Dec 2024 06:16:00 +0000' does not match format '%a, %d %b %Y %H:%M:%S %Z'
+2024-12-12 15:38:55,428 - INFO - MainPipeline - Starting the main function...
+2024-12-12 15:38:55,551 - INFO - ingestion.fetch_rss - Successfully fetched data from the RSS feed.
+2024-12-12 15:38:55,551 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:38:55,552 - INFO - parsing.parse_data - Successfully parsed 20 articles.
+2024-12-12 15:38:55,552 - INFO - MainPipeline - Parsed 20 articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss.
+2024-12-12 15:38:55,554 - INFO - parsing.parse_data - Stored 20 articles.
+2024-12-12 15:38:55,555 - INFO - MainPipeline - Stored parsed articles from https://www.prnewswire.co.uk/rss/news-releases-list.rss in the database.
+2024-12-12 15:38:55,555 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:38:55,555 - INFO - parsing.parse_data - Successfully parsed 34 articles.
+2024-12-12 15:38:55,555 - INFO - MainPipeline - Parsed 34 articles from https://feeds.bbci.co.uk/news/rss.xml.
+2024-12-12 15:38:55,555 - INFO - parsing.parse_data - Stored 34 articles.
+2024-12-12 15:38:55,555 - INFO - MainPipeline - Stored parsed articles from https://feeds.bbci.co.uk/news/rss.xml in the database.
+2024-12-12 15:38:55,555 - INFO - parsing.parse_data - Parsing feed entries...
+2024-12-12 15:38:55,556 - ERROR - parsing.parse_data - Error parsing date: time data '2024-12-12T10:30:00-05:00' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:38:55,556 - ERROR - parsing.parse_data - Error parsing date: time data '2024-12-12T10:22:03-05:00' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:38:55,556 - ERROR - parsing.parse_data - Error parsing date: time data '2024-12-12T10:00:00-05:00' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:38:55,556 - ERROR - parsing.parse_data - Error parsing date: time data '2024-12-12T09:55:06-05:00' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:38:55,556 - ERROR - parsing.parse_data - Error parsing date: time data '2024-12-12T09:30:40-05:00' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:38:55,556 - ERROR - parsing.parse_data - Error parsing date: time data '2024-12-12T09:30:00-05:00' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:38:55,556 - ERROR - parsing.parse_data - Error parsing date: time data '2024-12-12T09:00:00-05:00' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:38:55,556 - ERROR - parsing.parse_data - Error parsing date: time data '2024-12-12T09:00:00-05:00' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:38:55,556 - ERROR - parsing.parse_data - Error parsing date: time data '2024-12-12T08:45:46-05:00' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:38:55,556 - ERROR - parsing.parse_data - Error parsing date: time data '2024-12-12T08:00:00-05:00' does not match format '%a, %d %b %Y %H:%M:%S %z'
+2024-12-12 15:38:55,556 - INFO - parsing.parse_data - Successfully parsed 10 articles.
+2024-12-12 15:38:55,556 - INFO - MainPipeline - Parsed 10 articles from https://www.theverge.com/rss/index.xml.
+2024-12-12 15:38:55,557 - INFO - parsing.parse_data - Stored 10 articles.
+2024-12-12 15:38:55,557 - INFO - MainPipeline - Stored parsed articles from https://www.theverge.com/rss/index.xml in the database.

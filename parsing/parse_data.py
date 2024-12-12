@@ -11,65 +11,45 @@ import json  # Import the json module
 # Logger initialization
 logger = logging.getLogger(__name__)
 
-# def parse_serialized_feed(fetched_data):
-#     """
-#     Deserialize the fetched data and parse it into articles.
-
-#     :param fetched_data: The JSON string containing the fetched feed data.
-#     :return: List of parsed articles.
-#     """
-#     logger.info("Deserializing fetched data...")
-    
-#     try:
-#         # Deserialize JSON feed data
-#         feed = json.loads(fetched_data)
-#     except json.JSONDecodeError as e:
-#         logger.error(f"Failed to decode JSON: {e}")
-#         return []
-
-#     articles = []
-
-#     # Check if the feed has entries
-#     if not feed or not hasattr(feed, 'entries'):
-#         logger.error("Feed is invalid or does not contain entries.")
-#         return []
-
-#     for entry in feed['entries']:
-#         try:
-#             article = {
-#                 "title": entry.get("title", "No Title"),
-#                 "description": entry.get("description", "No Description"),
-#                 "link": entry.get("link", None),
-#                 "published": entry.get("published", "Unknown Date")
-#             }
-#             articles.append(article)
-#         except Exception as e:
-#             logger.warning(f"Error while parsing entry: {e}")
-#             continue
-
-#     logger.info(f"Successfully parsed {len(articles)} articles.")
-#     return articles
-
-def parse_feed(entries):
+def parse_feed(entries, rss_feed):
     logger.info("Parsing feed entries...")
     
     if not isinstance(entries, list) or not entries:
         logger.error("No valid entries to parse.")
         return []
 
-    # Filter out invalid entries
+    # Filter out invalid entries and normalize fields
     articles = [
         {
             "title": entry.get("title", "Untitled"),
-            "description": entry.get("summary", "No description available."),
+            "description": entry.get("summary") or entry.get("description", "No description available."),
             "link": entry.get("link"),
-            "published": entry.get("published", "Unknown date"),
-            "source": entry.get("source", "Unknown Source"),
-            "published_date": entry.get("published_date", "Unknown Date")
+            "source": rss_feed,  # Use the rss_feed passed to the function
+            "published_date": (
+                # Get the date string from pubDate or published
+                entry.get("pubDate") or entry.get("published", "Unknown Date")
+            ),
+            "parsed_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Add parsed timestamp
         }
         for entry in entries
         if entry.get("title") and entry.get("link")  # Only include entries with both title and link
     ]
+
+    # Format the published_date correctly
+    for article in articles:
+        if article["published_date"] != "Unknown Date":
+            try:
+                # Check if the date string contains 'GMT'
+                if 'GMT' in article["published_date"]:
+                    article["published_date"] = datetime.strptime(article["published_date"], 
+                                                                  "%a, %d %b %Y %H:%M:%S %Z").strftime("%d %b %Y %H:%M")
+                else:
+                    # Handle the +0000 format
+                    article["published_date"] = datetime.strptime(article["published_date"], 
+                                                                  "%a, %d %b %Y %H:%M:%S %z").strftime("%d %b %Y %H:%M")
+            except ValueError as e:
+                logger.error(f"Error parsing date: {e}")
+                article["published_date"] = "Unknown Date"
 
     logger.info(f"Successfully parsed {len(articles)} articles.")
     return articles
@@ -106,43 +86,6 @@ def store_parsed_articles(articles, db_name="news_ingestion.db"):
         connection.commit()
 
     logger.info(f"Stored {len(articles)} articles.")
-
-def parse_and_store_articles(db_name="news_ingestion.db"):
-    """
-    Fetch raw feed data from the database, parse it, and store normalized articles.
-
-    :param db_name: Name of the SQLite database file.
-    """
-    connection = sqlite3.connect(db_name)
-    cursor = connection.cursor()
-
-    try:
-        # Step 1: Fetch raw feed data
-        cursor.execute("SELECT fetched_data FROM raw_feed")
-        raw_feeds = cursor.fetchall()
-
-        if not raw_feeds:
-            logger.warning("No raw feeds available to parse.")
-            return
-
-        for (fetched_data,) in raw_feeds:  # Unpack the tuple
-            logger.info("Parsing raw feed data...")
-            try:
-                # Deserialize JSON feed data
-                feed = json.loads(fetched_data)
-                articles = parse_feed(feed['entries'])  # Pass the entries directly
-
-                # Step 2: Store parsed articles in the parsed_articles table
-                store_parsed_articles(articles, connection)
-
-            except json.JSONDecodeError as e:
-                logger.error(f"Parse_data: Failed to decode JSON: {e}")
-            except Exception as e:
-                logger.warning(f"Error while processing raw feed data: {e}")
-
-    finally:
-        connection.close()
-        logger.info("Parsing and storing articles complete.")
 
 def initialize_database(db_name):
     with sqlite3.connect(db_name) as connection:

@@ -49,5 +49,12 @@ def initialize_database(db_name="news_ingestion.db"):
     connection.close()
     print(f"Database '{db_name}' initialized successfully!")
 
+def get_rss_sources(db_name="news_ingestion.db"):
+    with sqlite3.connect(db_name) as connection:
+        cursor = connection.cursor()
+        cursor.execute("SELECT feed_url FROM rss_sources WHERE status = 'active'")  # Adjust the query as needed
+        sources = cursor.fetchall()
+        return [source[0] for source in sources]  # Return a list of feed URLs
+
 if __name__ == "__main__":
     initialize_database()

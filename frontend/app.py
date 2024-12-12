@@ -14,6 +14,7 @@ def create_app(db_path='news_ingestion.db'):
             cursor = connection.cursor()
             cursor.execute("SELECT title, description, source, link, published_date FROM parsed_articles")
             articles = cursor.fetchall()
+            print("ARTICLES are ", articles)
             return [
                 {"title": row[0], "description": row[1], "source": row[2], "link": row[3], "published_date": row[4]}
                 for row in articles
