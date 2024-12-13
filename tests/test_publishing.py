@@ -1,11 +1,11 @@
 import pytest
-from frontend.app import create_app
 import sqlite3
-from parsing.parse_data import store_parsed_articles
+from frontend.app import create_app  # Ensure create_app exists in app.py
+from parsing.parse_data import store_parsed_articles  # Ensure parse_data module exists
 
 @pytest.fixture
 def app(temp_db):
-    app = create_app(db_path=temp_db)
+    app = create_app(db_path=temp_db)  # Ensure create_app accepts db_path as a parameter
     app.config["TESTING"] = True
     return app
 
@@ -31,7 +31,7 @@ def temp_db(tmp_path):
 
 def add_article_to_db(article_data, db_file):
     # Helper function to add an article to the database
-    with sqlite3.connect(str(db_file)) as connection:  # Use with statement for connection
+    with sqlite3.connect(str(db_file)) as connection:
         cursor = connection.cursor()
         cursor.execute('''
             INSERT INTO parsed_articles (title, description, source, published_date)
@@ -50,7 +50,6 @@ def test_empty_database_handling(app):
     # Test behavior when the database is empty
     with app.test_client() as client:
         response = client.get("/")
-        print(response.data)  # Debug: Print the response data
         assert b"No articles available" in response.data, "Homepage should indicate no articles are available"
 
 @pytest.mark.parametrize("article_data", [
@@ -75,7 +74,6 @@ def test_publishing_with_articles(article_data, temp_db, app):
     # Simulate a request to the root URL and check the response
     with app.test_client() as client:
         response = client.get("/")
-        print(response.data)  # Debug: Print the response data
         assert article_data["title"].encode() in response.data, (
             f"Expected article title '{article_data['title']}' to be in response"
         )
@@ -96,4 +94,3 @@ def test_store_parsed_article_content(temp_db):
         cursor.execute("SELECT title, description, source, link, published_date FROM parsed_articles")
         row = cursor.fetchone()
         assert row == ("Test Article", "Test Description", "Test Source", "http://link", "2024-01-01"), "Stored article data does not match input data"
-

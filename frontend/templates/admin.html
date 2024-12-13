@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Admin Dashboard</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <div class="row mt-4">
+        <!-- App Configuration -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>App Configuration</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('update_config') }}">
+                        {% for config in configs %}
+                        <div class="mb-3">
+                            <label for="{{ config.key }}" class="form-label">
+                                {{ config.description }}
+                            </label>
+                            
+                            {% if config.type == 'select' and config.options %}
+                            <select class="form-select" name="{{ config.key }}" id="{{ config.key }}">
+                                {% for option in config.options %}
+                                <option value="{{ option }}" {% if option == config.value %}selected{% endif %}>
+                                    {{ option }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            
+                            {% elif config.type == 'number' %}
+                            <input type="number" class="form-control" 
+                                   name="{{ config.key }}" 
+                                   id="{{ config.key }}"
+                                   value="{{ config.value }}">
+                            
+                            {% else %}
+                            <input type="text" class="form-control" 
+                                   name="{{ config.key }}" 
+                                   id="{{ config.key }}"
+                                   value="{{ config.value }}">
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        
+                        <button type="submit" class="btn btn-primary">Save Configuration</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RSS Sources -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>RSS Sources</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Add new RSS source -->
+                    <form method="POST" action="{{ url_for('update_rss') }}" class="mb-4">
+                        <input type="hidden" name="action" value="add">
+                        <div class="mb-3">
+                            <label for="feed_url" class="form-label">Feed URL</label>
+                            <input type="url" class="form-control" name="feed_url" id="feed_url" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="source_name" class="form-label">Source Name</label>
+                            <input type="text" class="form-control" name="source_name" id="source_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            <input type="text" class="form-control" name="category" id="category">
+                        </div>
+                        <button type="submit" class="btn btn-success">Add RSS Source</button>
+                    </form>
+
+                    <!-- Existing RSS sources -->
+                    <h4>Existing Sources</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>URL</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for source in rss_sources %}
+                                <tr>
+                                    <td>{{ source.source_name }}</td>
+                                    <td>{{ source.feed_url }}</td>
+                                    <td>{{ source.category }}</td>
+                                    <td>{{ source.status }}</td>
+                                    <td>
+                                        <form method="POST" action="{{ url_for('update_rss') }}" style="display: inline;">
+                                            <input type="hidden" name="action" value="update">
+                                            <input type="hidden" name="id" value="{{ source.id }}">
+                                            <input type="hidden" name="status" 
+                                                   value="{{ 'inactive' if source.status == 'active' else 'active' }}">
+                                            <button type="submit" class="btn btn-sm 
+                                                    {{ 'btn-danger' if source.status == 'active' else 'btn-success' }}">
+                                                {{ 'Deactivate' if source.status == 'active' else 'Activate' }}
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

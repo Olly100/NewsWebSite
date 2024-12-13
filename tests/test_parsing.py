@@ -26,27 +26,30 @@ def temp_db(tmp_path):
 def test_parse_feed():
     # Test feed with one valid and one invalid entry
     sample_feed_entries = [
-        {"title": "Valid Title", "summary": "Valid Summary", "link": "http://example.com", "published": "2024-01-01"},
-        {"title": "", "summary": "Invalid Article", "link": None, "published": "2024-01-02"},
+        {"title": "Valid Title", "summary": "Valid Summary", "link": "http://example.com", "pubDate": "2024-01-01"},
+        {"title": "", "summary": "Invalid Article", "link": None, "pubDate": "2024-01-02"},
     ]
-    parsed = parse_feed(sample_feed_entries)
+    rss_feed = "https://example.com/rss"  # Example RSS feed URL
+    parsed = parse_feed(sample_feed_entries, rss_feed)  # Pass rss_feed argument
     assert len(parsed) == 1, f"Expected 1 valid article, got {len(parsed)}"
     assert parsed[0]["title"] == "Valid Title"
 
 def test_parse_feed_with_missing_fields():
     # Test feed with missing or malformed fields
     sample_feed_entries = [
-        {"title": None, "summary": None, "link": None, "published": None},
-        {"title": "Valid Title", "summary": "Valid Summary", "link": "http://example.com", "published": "2024-01-01"},
+        {"title": None, "summary": None, "link": None, "pubDate": None},
+        {"title": "Valid Title", "summary": "Valid Summary", "link": "http://example.com", "pubDate": "2024-01-01"},
     ]
-    parsed = parse_feed(sample_feed_entries)
+    rss_feed = "https://example.com/rss"  # Example RSS feed URL
+    parsed = parse_feed(sample_feed_entries, rss_feed)  # Pass rss_feed argument
     assert len(parsed) == 1, "Should parse only valid articles"
     assert parsed[0]["title"] == "Valid Title", "The title of the valid article should be 'Valid Title'"
 
 def test_parse_feed_malformed_data():
     # Explicitly test malformed data formats
     malformed_feed_entries = [{"malformed_field": "Unexpected Data"}]
-    parsed = parse_feed(malformed_feed_entries)
+    rss_feed = "https://example.com/rss"  # Example RSS feed URL
+    parsed = parse_feed(malformed_feed_entries, rss_feed)  # Pass rss_feed argument
     assert len(parsed) == 0, "Malformed entries should not be parsed"
 
 def test_store_parsed_article_content(temp_db):

@@ -18,7 +18,8 @@ def test_empty_feed(mock_fetch):
     mock_fetch.return_value = []
     
     # Parse the empty fetched data
-    parsed_articles = parse_feed(mock_fetch.return_value)
+    rss_feed = "https://example.com/rss"  # Example RSS feed URL
+    parsed_articles = parse_feed(mock_fetch.return_value, rss_feed)  # Pass rss_feed argument
     
     # Assert that no articles are parsed from an empty feed
     assert len(parsed_articles) == 0, "No articles should be parsed from an empty feed"
@@ -41,7 +42,8 @@ async def test_pipeline(mock_store, mock_fetch):
     assert len(fetched_data) > 0, "Fetched data should not be empty"
 
     # Parse the fetched data
-    parsed_articles = parse_feed(fetched_data)
+    rss_feed = "https://example.com/rss"  # Example RSS feed URL
+    parsed_articles = parse_feed(fetched_data, rss_feed)  # Pass rss_feed argument
     print(f"Parsed articles count: {len(parsed_articles)}")  # Check how many articles were parsed
 
     # Ensure only valid articles are parsed

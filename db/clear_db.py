@@ -1,23 +1,37 @@
 import sqlite3
+import logging
 
-def clear_database(db_name="news_ingestion.db"):
-    """Clear all data from the database."""
-    conn = sqlite3.connect(db_name)
-    cursor = conn.cursor()
+logger = logging.getLogger(__name__)
 
-    # List of tables to clear
-    tables = ["parsed_articles", "raw_feed", "rss_sources"]
-
-    for table in tables:
-        try:
-            cursor.execute(f"DELETE FROM {table}")
-            conn.commit()
-            print(f"Cleared data from table: {table}")
-        except sqlite3.OperationalError as e:
-            print(f"Error clearing table {table}: {e}")
-
-    conn.close()
-    print(f"Database '{db_name}' has been cleared.")
+def drop_tables(db_name="news_ingestion.db"):
+    """
+    Drop all tables from the database to allow complete rebuild
+    """
+    try:
+        with sqlite3.connect(db_name) as connection:
+            cursor = connection.cursor()
+            
+            # Get list of all tables, excluding SQLite system tables
+            cursor.execute("""
+                SELECT name FROM sqlite_master 
+                WHERE type='table' 
+                AND name NOT LIKE 'sqlite_%'
+            """)
+            tables = cursor.fetchall()
+            
+            # Drop each table
+            for table in tables:
+                table_name = table[0]
+                cursor.execute(f"DROP TABLE IF EXISTS {table_name}")
+                logger.info(f"Dropped table: {table_name}")
+            
+            connection.commit()
+            logger.info("All tables dropped successfully")
+            
+    except Exception as e:
+        logger.error(f"Error dropping tables: {e}")
+        raise
 
 if __name__ == "__main__":
-    clear_database()
+    logging.basicConfig(level=logging.INFO)
+    drop_tables() 

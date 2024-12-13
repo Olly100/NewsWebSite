@@ -1,105 +1,102 @@
-# News Aggregation and Publishing System
+# NewsWebSite
 
-## Overview
-This project is a modular application that ingests, parses, ranks, and publishes news articles from RSS feeds. It provides a foundation for further expansion into a scalable, user-focused news aggregation platform.
+A Flask-based web application that fetches and displays ranked articles from various sources. The application includes an admin interface for managing configurations and RSS sources.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Admin Interface](#admin-interface)
+- [API Endpoints](#api-endpoints)
+- [Logging](#logging)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
-- **RSS Feed Ingestion**: Fetches articles from multiple RSS feeds asynchronously.
-- **Data Parsing**: Extracts and normalizes key fields (e.g., title, description, source) from the fetched data.
-- **Database Storage**: Stores parsed articles in an SQLite database, ensuring data integrity and easy retrieval.
-- **Ranking Logic**: Implements ranking algorithms to prioritize articles based on defined criteria.
-- **Publishing**: Publishes processed articles to a web interface.
-- **Testing Framework**: Comprehensive unit tests using `pytest` to ensure code reliability.
 
-## Project Structure
-/news_aggregation
-│
-├── db/
-│ ├── database.py # Database connection and operations
-│ ├── populate_rss_sources.py # Script to populate RSS sources in the database
-│
-├── ingestion/
-│ ├── fetch_rss.py # Fetching RSS feeds asynchronously
-│
-├── parsing/
-│ ├── parse_data.py # Parsing logic for RSS feed data
-│
-├── ranking/
-│ ├── rank.py # Ranking articles based on defined rules
-│
-├── publishing/
-│ ├── publish.py # Handles publishing to the output medium
-│
-├── frontend/
-│ ├── app.py # Flask application for serving articles
-│ ├── templates/
-│ ├── index.html # HTML template for displaying articles
-│
-├── tests/
-│ ├── test_parsing.py # Unit tests for parsing functionality
-│ ├── test_pipeline.py # Integration tests for the pipeline
-│ ├── test_publishing.py # Tests for publishing articles
-│ ├── test_ingestion.py # Tests for RSS feed ingestion
-│
-├── main.py # Main entry point for the application
-├── logging_config.py # Logging setup for debugging and monitoring
-└── README.md # Project documentation
+- Display ranked articles on the homepage.
+- Admin interface for managing application configurations and RSS sources.
+- Basic authentication for admin routes.
+- RESTful API to fetch articles.
 
+## Technologies Used
+
+- Python
+- Flask
+- SQLite
+- Jinja2 (for templating)
+- dotenv (for environment variable management)
+- Logging
 
 ## Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/news_aggregation.git
-   cd news_aggregation
+   git clone https://github.com/yourusername/NewsWebSite.git
+   cd NewsWebSite
    ```
 
-2. Install the required packages:
+2. Create a virtual environment:
+   ```bash
+   python -m venv test_env
+   ```
+
+3. Activate the virtual environment:
+   - On macOS/Linux:
+     ```bash
+     source test_env/bin/activate
+     ```
+   - On Windows:
+     ```bash
+     test_env\Scripts\activate
+     ```
+
+4. Install the required packages:
    ```bash
    pip install -r requirements.txt
    ```
 
-## Setup Instructions
-
-1. **Initialize the Database**:
-   Run the following command to set up the database:
-   ```bash
-   python main.py --init-db
+5. Set up environment variables:
+   Create a `.env` file in the root directory and add the following:
+   ```plaintext
+   FLASK_SECRET_KEY=your_secret_key
+   ADMIN_USERNAME=your_admin_username
+   ADMIN_PASSWORD=your_admin_password
+   DB_NAME=your_database_name.db
    ```
 
-2. **Populate RSS Sources**:
-   To populate the database with initial RSS sources, run:
-   ```bash
-   python db/populate_rss_sources.py
-   ```
+## Usage
 
-## Running the Application
+To run the application, use the following command:
 
-To run the application, execute the following command:
 bash
-python main.py
+python -m frontend.app
 
+Visit `http://127.0.0.1:5000` in your web browser to access the application.
 
-Visit `http://127.0.0.1:5000` in your web browser to view the news articles.
+## Configuration
 
-## Testing
+The application configuration can be managed through the admin interface. You can update settings such as RSS feed sources and other application parameters.
 
-To run the tests, use the following command:
-bash
-pytest
+## Admin Interface
 
+Access the admin interface at `http://127.0.0.1:5000/admin`. You will need to log in using the credentials specified in your `.env` file.
+
+## API Endpoints
+
+- **GET /api/articles**: Fetches ranked articles in JSON format.
 
 ## Logging
 
-The application uses logging to track operations and errors. Logs are written to `app.log` and can be monitored for debugging purposes.
+The application uses logging to track events and errors. Logs are printed to the console and can be configured to be saved to a file.
 
-## Future Enhancements
+## Contributing
 
-- Implement user authentication for personalized news feeds.
-- Expand the ranking algorithm to consider user preferences.
-- Add support for additional data sources and formats.
-- Improve the user interface for better interaction with the news articles.
+Contributions are welcome! Please fork the repository and submit a pull request for any changes or improvements.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
