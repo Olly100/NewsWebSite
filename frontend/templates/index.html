@@ -18,6 +18,14 @@
 
     <div class="container mt-5">
         <h1 class="text-center text-primary mb-4">News Articles</h1>
+
+        <!-- Refresh RSS Feeds Button -->
+        <div class="text-center mb-4">
+            <form method="POST" action="{{ url_for('refresh_feeds') }}">
+                <button type="submit" class="btn btn-primary">Refresh RSS Feeds</button>
+            </form>
+        </div>
+
         <div id="articles" class="row">
             {% for article in articles %}
             <div class="col-md-6 mb-4">

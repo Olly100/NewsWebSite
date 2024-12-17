@@ -1,102 +1,87 @@
-# NewsWebSite
+News Website Project
 
-A Flask-based web application that fetches and displays ranked articles from various sources. The application includes an admin interface for managing configurations and RSS sources.
+Overview
+This project is a news aggregation website that fetches articles from various RSS feeds, enriches them with keywords and summaries using a language model, and displays them to users. The application is built using Python with Flask for the web framework, SQLite for the database, and the Anthropic API for content enrichment.
+Features
+Fetches articles from multiple RSS feeds.
+Parses and stores articles in a SQLite database.
+Enriches articles with keywords, importance levels, and summaries using the Anthropic language model.
+Displays enriched articles on the main page.
+Admin interface for refreshing RSS feeds and managing articles.
 
-## Table of Contents
+Project Structure
+/your_project
+    /config
+        config.py               # Configuration settings#
+    /frontend
+        app.py                  # Flask application and routes
+        templates/              # HTML templates for rendering pages
+    /enrichment
+        llm_enrichment.py       # Contains the AnthropicEnricher class and enrichment logic
+    /ingestion
+        fetch_rss.py           # Fetches RSS feed data
+    /parsing
+        parse_data.py          # Parses and normalizes article data
+    /pipeline
+        rss_manager.py          # Manages the RSS feed refresh process
+    /publishing
+        publishing.py           # Manages the publishing of articles
+    /db
+        database.py             # Database setup and interaction
+    /ranking
+        ranking.py              # Manages the ranking of articles
+    /scheduler
+        fetch_schedule.py       # Scheduled RSS fetching
+    /main
+        main.py                 # Entry point for running the application
+    /tests                      # series of tests for key components
+    .env                        # Environment variables (e.g., API keys)
+    requirements.txt            # Python package dependencies
+    news_ingestion.db           # SQLite3 database
+    README.md                   # Project documentation
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Admin Interface](#admin-interface)
-- [API Endpoints](#api-endpoints)
-- [Logging](#logging)
-- [Contributing](#contributing)
-- [License](#license)
 
-## Features
-
-- Display ranked articles on the homepage.
-- Admin interface for managing application configurations and RSS sources.
-- Basic authentication for admin routes.
-- RESTful API to fetch articles.
-
-## Technologies Used
-
-- Python
-- Flask
-- SQLite
-- Jinja2 (for templating)
-- dotenv (for environment variable management)
-- Logging
-
-## Installation
-
+Installation
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/NewsWebSite.git
-   cd NewsWebSite
-   ```
+   git clone https://github.com/yourusername/news-website.git
+   cd news-website
 
 2. Create a virtual environment:
-   ```bash
-   python -m venv test_env
-   ```
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 
-3. Activate the virtual environment:
-   - On macOS/Linux:
-     ```bash
-     source test_env/bin/activate
-     ```
-   - On Windows:
-     ```bash
-     test_env\Scripts\activate
-     ```
-
-4. Install the required packages:
-   ```bash
+3. Install the required packages:
    pip install -r requirements.txt
-   ```
 
-5. Set up environment variables:
-   Create a `.env` file in the root directory and add the following:
-   ```plaintext
-   FLASK_SECRET_KEY=your_secret_key
-   ADMIN_USERNAME=your_admin_username
-   ADMIN_PASSWORD=your_admin_password
-   DB_NAME=your_database_name.db
-   ```
+4. Set up your environment variables in a .env file:
+   ANTHROPIC_API_KEY=your_anthropic_api_key
 
-## Usage
+5. Initialize the database:
+   You can run the database setup function in main.py or call it directly in a Python shell.
 
-To run the application, use the following command:
+Usage
+1. Start the application:
+   python main.py
 
-bash
-python -m frontend.app
+2. Access the application in your web browser at http://127.0.0.1:5000.
 
-Visit `http://127.0.0.1:5000` in your web browser to access the application.
+Use the admin interface to refresh RSS feeds and manage articles.
 
-## Configuration
+Code Overview
+Key Components
+Frontend: The app.py file contains the Flask application and routes for handling requests and rendering templates.
+Enrichment: The llm_enrichment.py file defines the AnthropicEnricher class, which uses the Anthropic API to enrich articles with keywords and summaries.
+Ingestion: The fetch_rss.py file is responsible for fetching data from RSS feeds.
+Parsing: The parse_data.py file handles the extraction and normalization of article fields.
+Pipeline: The rss_manager.py file manages the process of refreshing RSS feeds, parsing articles, enriching them, and storing them in the database.
+Database: The database.py file contains functions for setting up and interacting with the SQLite database.
 
-The application configuration can be managed through the admin interface. You can update settings such as RSS feed sources and other application parameters.
+Logging
+The application uses Python's built-in logging module to log important events and errors. Logs are written to the console and can be configured to log to a file if desired.
 
-## Admin Interface
-
-Access the admin interface at `http://127.0.0.1:5000/admin`. You will need to log in using the credentials specified in your `.env` file.
-
-## API Endpoints
-
-- **GET /api/articles**: Fetches ranked articles in JSON format.
-
-## Logging
-
-The application uses logging to track events and errors. Logs are printed to the console and can be configured to be saved to a file.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request for any changes or improvements.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Contributing
+Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+License
+This project is licensed under the MIT License. See the LICENSE file for more details.
+---
+Feel free to modify any sections to better fit your project's specifics or to add any additional information that may be relevant!

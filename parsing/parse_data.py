@@ -6,6 +6,7 @@ import sqlite3
 import ast  # For safely evaluating serialized Python dictionaries
 import logging
 from datetime import datetime
+from dateutil.parser import parse as dateutil_parse  # Import dateutil parser
 import json  # Import the json module
 from db.database import initialize_database  # Import from centralized db module
 from enrichment.llm_enrichment import AnthropicEnricher, enrich_articles
@@ -14,6 +15,21 @@ import asyncio
 
 # Logger initialization
 logger = logging.getLogger(__name__)
+
+def parse_date(date_str):
+    """Parse a date string into a datetime object."""
+    try:
+        # Try parsing with dateutil first
+        return dateutil_parse(date_str)
+    except ValueError:
+        logger.error(f"Error parsing date with dateutil: {date_str}")
+    
+    try:
+        # Fallback to datetime.strptime for RFC-2822 format
+        return datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S %z')
+    except ValueError:
+        logger.error(f"Error parsing date with strptime: {date_str}")
+        return None  # Return None or handle as needed
 
 def get_existing_articles(db_name="news_ingestion.db"):
     """Get existing article titles and sources from database"""

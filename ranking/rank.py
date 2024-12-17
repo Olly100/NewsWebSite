@@ -28,6 +28,59 @@ class ArticleRanker:
         """
         self.max_age_days = max_age_days
     
+    def fetch_articles_from_db(self, db_name: str) -> list:
+        """
+        Fetch articles from the database.
+        
+        Args:
+            db_name: Path to the database file
+            
+        Returns:
+            list: List of articles fetched from the database
+        """
+        articles = []
+        try:
+            # Get absolute path to the database
+            if not os.path.isabs(db_name):
+                project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                db_name = os.path.join(project_root, db_name)
+            
+            abs_db_path = os.path.abspath(db_name)
+            logger.info(f"Attempting to connect to database at: {abs_db_path}")
+            
+            with sqlite3.connect(db_name) as conn:
+                cursor = conn.cursor()
+                
+                cursor.execute('SELECT id, title, description, source, link, published_date, importance, derived_summary, keywords FROM parsed_articles')
+                articles = cursor.fetchall()
+                logger.info(f"Fetched {len(articles)} articles from database")
+                
+                if not articles:
+                    logger.warning("No articles found in database")
+                    return []
+                
+                # Convert fetched articles to a list of dictionaries
+                articles = [
+                    {
+                        'id': article[0],
+                        'title': article[1],
+                        'description': article[2],
+                        'source': article[3],
+                        'link': article[4],
+                        'published_date': article[5],
+                        'importance': article[6],
+                        'derived_summary': article[7] or article[2][:100] + "...",
+                        'keywords': article[8]
+                    }
+                    for article in articles
+                ]
+                
+        except Exception as e:
+            logger.error(f"Error fetching articles from database: {e}")
+            raise  # Raise the exception for handling in the calling method
+        
+        return articles
+
     def calculate_time_score(self, published_date: str) -> float:
         """
         Calculate time-based score (1.0 for now, decreasing to 0.0 for max_age)
@@ -54,7 +107,7 @@ class ArticleRanker:
             logger.error(f"Error parsing date {published_date}: {e}")
             return 0.0
     
-    def calculate_importance_score(self, importance: str) -> float:
+    def calculate_importance_score(self, importance: str = None) -> float:
         """
         Convert importance level to numerical score
         
@@ -64,7 +117,8 @@ class ArticleRanker:
         Returns:
             float: Score between 0 and 1
         """
-        return self.IMPORTANCE_WEIGHTS.get(importance.lower(), 0.1)
+        importance = (importance or 'uncategorized').lower()
+        return self.IMPORTANCE_WEIGHTS.get(importance, 0.1)
     
     def calculate_rank(self, published_date: str, importance: str) -> float:
         """
@@ -85,64 +139,32 @@ class ArticleRanker:
         
         return round(rank, 3)
     
-    def rank_articles(self, db_name="news_ingestion.db") -> list:
+    def rank_articles(self, articles: list) -> list:
         """
-        Fetch and rank all articles from database
+        Rank a list of articles based on their publication date and importance.
+        
+        Args:
+            articles: List of articles to rank
+            
+        Returns:
+            list: Ranked articles sorted by score
         """
+        ranked_articles = []
         try:
-            # Get absolute path to the database
-            if not os.path.isabs(db_name):
-                # If db_name is relative, make it relative to project root
-                project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-                db_name = os.path.join(project_root, db_name)
+            for article in articles:
+                rank = self.calculate_rank(article['published_date'], article.get('importance'))
+                article['rank'] = rank
+                ranked_articles.append(article)
             
-            abs_db_path = os.path.abspath(db_name)
-            logger.info(f"Attempting to connect to database at: {abs_db_path}")
+            # Sort by rank descending
+            ranked_articles.sort(key=lambda x: x['rank'], reverse=True)
+            logger.info(f"Ranked {len(ranked_articles)} articles")
+            return ranked_articles
             
-            with sqlite3.connect(db_name) as conn:
-                cursor = conn.cursor()
-                
-                # First check if we have any articles
-                cursor.execute('SELECT COUNT(*) FROM parsed_articles')
-                count = cursor.fetchone()[0]
-                logger.info(f"Found {count} articles in database")
-                
-                cursor.execute('''
-                    SELECT id, title, description, source, link, 
-                    published_date, importance, derived_summary, keywords 
-                    FROM parsed_articles
-                ''')
-                articles = cursor.fetchall()
-                logger.info(f"Fetched {len(articles)} articles from database")
-                
-                if not articles:
-                    logger.warning("No articles found in database")
-                    return []
-                
-                ranked_articles = []
-                for article in articles:
-                    id, title, description, source, link, published_date, importance, derived_summary, keywords = article
-                    rank = self.calculate_rank(published_date, importance or 'uncategorized')
-                    ranked_articles.append({
-                        'id': id,
-                        'title': title,
-                        'description': description,
-                        'source': source,
-                        'link': link,
-                        'published_date': published_date,
-                        'importance': importance,
-                        'derived_summary': derived_summary or description[:100] + "...",
-                        'rank': rank
-                    })
-                
-                # Sort by rank descending
-                ranked_articles.sort(key=lambda x: x['rank'], reverse=True)
-                logger.info(f"Ranked {len(ranked_articles)} articles")
-                return ranked_articles
-                
         except Exception as e:
             logger.error(f"Error ranking articles: {e}")
-            logger.exception("Full traceback:")
+            if os.getenv('ENV', 'production') == 'development':
+                raise  # Raise the exception in development mode
             return []
 
 def get_ranked_articles(max_age_days=7, db_name="news_ingestion.db"):
@@ -159,13 +181,17 @@ def get_ranked_articles(max_age_days=7, db_name="news_ingestion.db"):
     # Ensure max_age_days is an integer
     max_age_days = int(max_age_days)
     ranker = ArticleRanker(max_age_days=max_age_days)
-    return ranker.rank_articles(db_name)
+    
+    # Fetch articles from the database
+    articles = ranker.fetch_articles_from_db(db_name)
+    
+    # Rank the fetched articles
+    return ranker.rank_articles(articles)
 
 if __name__ == "__main__":
     # Example usage
     logging.basicConfig(level=logging.INFO)
-    ranker = ArticleRanker(max_age_days=7)
-    ranked_articles = ranker.rank_articles()
+    ranked_articles = get_ranked_articles(max_age_days=7)
     
     print("\nRanked Articles (from highest to lowest rank):")
     print("-" * 80)
@@ -174,12 +200,7 @@ if __name__ == "__main__":
         print(f"Title: {article['title']}")
         print(f"Published: {article['published_date']}")
         print(f"Importance: {article['importance']}")
-        
-        # Get the component scores for transparency
-        time_score = ranker.calculate_time_score(article['published_date'])
-        importance_score = ranker.calculate_importance_score(article['importance'] or 'uncategorized')
-        print(f"Time Score: {time_score:.3f}")
-        print(f"Importance Score: {importance_score:.3f}")
+        print(f"Derived Summary: {article['derived_summary']}")
         print("-" * 80)
     
     print(f"\nTotal articles ranked: {len(ranked_articles)}")

@@ -7,16 +7,21 @@ import sys
 import os
 import json
 from dotenv import load_dotenv
-from config import Config
-from ranking.rank import get_ranked_articles
+from pipeline.rss_manager import refresh_rss_feeds  # Import the new function
+from enrichment.llm_enrichment import AnthropicEnricher  # Ensure this import is present
+
+import asyncio
 
 # Load environment variables before anything else
 load_dotenv()
 
 # Set up logging first
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from logging_config import setup_logging
-print("System Path:", sys.path)
+
+from config.logging_config import setup_logging
+print("App.py - System Path:", sys.path)
+from config.settings import Config
+from ranking.rank import get_ranked_articles
 
 logger = setup_logging()
 
@@ -205,6 +210,27 @@ def create_app(db_path=None):
             logger.error(f"Error updating RSS sources: {e}")
             flash(f'Error updating RSS sources: {str(e)}', 'error')
             return redirect(url_for('admin'))
+
+    @app.route('/refresh_feeds', methods=['POST'])
+    @admin_required  # Ensure this route is protected if needed
+    def refresh_feeds():
+        try:
+            api_key = os.getenv("ANTHROPIC_API_KEY")
+            if not api_key:
+                flash("ANTHROPIC_API_KEY not found in environment variables.", "error")
+                return redirect(url_for('admin'))
+
+            # Initialize the enricher
+            enricher = AnthropicEnricher(api_key)  # Ensure api_key is a string
+
+            # Call the refresh_rss_feeds function from rss_manager
+            result_message = asyncio.run(refresh_rss_feeds(enricher))
+            flash(result_message, "success")
+        except Exception as e:
+            logger.error(f"Error refreshing feeds: {e}")
+            flash(f"Error refreshing feeds: {str(e)}", "error")
+
+        return redirect(url_for('admin'))  # Redirect back to the admin page
 
     return app
 

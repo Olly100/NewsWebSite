@@ -64,6 +64,9 @@
                     <h3>RSS Sources</h3>
                 </div>
                 <div class="card-body">
+                    <form method="POST" action="{{ url_for('refresh_feeds') }}">
+                        <button type="submit" class="btn btn-primary">Refresh RSS Feeds</button>
+                    </form>
                     <!-- Add new RSS source -->
                     <form method="POST" action="{{ url_for('update_rss') }}" class="mb-4">
                         <input type="hidden" name="action" value="add">

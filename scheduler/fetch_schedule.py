@@ -14,8 +14,8 @@ from datetime import datetime
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(project_root)
 
-from main import main as fetch_main
-from logging_config import setup_logging
+from main.main import main as fetch_main
+from config.logging_config import setup_logging
 
 logger = setup_logging()
 

@@ -1,4 +1,4 @@
-from config import Config
+from config.settings import Config
 
 def test_config_values():
     assert Config.DB_URL == "sqlite:///news_ingestion.db"

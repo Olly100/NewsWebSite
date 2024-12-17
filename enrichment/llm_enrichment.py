@@ -4,18 +4,16 @@ Purpose: Enrich articles with keywords and summaries using LLM
 """
 from abc import ABC, abstractmethod
 import logging
-from anthropic import Anthropic
+from anthropic import Client  # Import the Client class from the Anthropic library
+from db.database import get_config_value
 
 logger = logging.getLogger(__name__)
 
 class LLMEnricher(ABC):
     """Abstract base class for LLM enrichment services"""
     
-    # Class constant for summary length
-    MAX_SUMMARY_WORDS = 5
-    
     @abstractmethod
-    async def enrich_content(self, title: str, description: str, max_words: int = MAX_SUMMARY_WORDS) -> tuple[str, str, str]:
+    async def enrich_content(self, title: str, description: str, max_words: int = None) -> tuple[str, str, str]:
         """
         Get keyword, importance, and summary in a single API call
         
@@ -31,9 +29,10 @@ class LLMEnricher(ABC):
 
 class AnthropicEnricher(LLMEnricher):
     def __init__(self, api_key: str):
-        self.client = Anthropic(api_key=api_key)
+        self.client = Client(api_key=api_key)  # Initialize the client with the API key
+        self.max_summary_words = int(get_config_value("summary_max_words") or 100)  # Default to 100 if not found
     
-    async def enrich_content(self, title: str, description: str, max_words: int = LLMEnricher.MAX_SUMMARY_WORDS) -> tuple[str, str, str]:
+    async def enrich_content(self, title: str, description: str, max_words: int = None) -> tuple[str, str, str]:
         """
         Get keyword, importance, and summary in a single API call
         
@@ -45,11 +44,16 @@ class AnthropicEnricher(LLMEnricher):
         Returns:
             tuple: (keyword, importance, summary)
         """
+        if max_words is None:
+            max_words = self.max_summary_words  # Use the fetched value if not provided
+        
         try:
-            prompt = (
-                "Analyze the following article and provide three things:\n"
-                "1. A single category keyword (like 'politics', 'sports', 'technology')\n"
-                "2. Importance level ('high', 'medium', 'low') based on news impact and urgency\n"
+            # Prepare the system and user prompts
+            system_prompt = "You are a summarizer. Only provide a keyword, importance, and a short summary."
+            user_prompt = (
+                f"Analyze the following article and provide three things:\n"
+                "1. A single category keyword\n"
+                "2. Importance level ('high', 'medium', 'low')\n"
                 f"3. A concise summary in {max_words} words or less\n\n"
                 f"Title: {title}\n"
                 f"Description: {description}\n\n"
@@ -59,17 +63,29 @@ class AnthropicEnricher(LLMEnricher):
                 "Line 3: the summary"
             )
             
+            logger.info("Sending request to Anthropic API")  # Log sending of prompt
+            
+            # Use messages.create() instead of completions.create()
             response = self.client.messages.create(
-                model="claude-3-haiku-20240307",
-                max_tokens=250,
-                temperature=0,
+                model="claude-3-haiku-20240307",  # Specify the model you are using
+                max_tokens=300,  # Use max_tokens instead of max_tokens_to_sample
+                temperature=0.7,
+                system=system_prompt,
                 messages=[
-                    {"role": "user", "content": prompt}
+                    {
+                        "role": "user",
+                        "content": [{"type": "text", "text": user_prompt}]
+                    }
                 ]
             )
             
+            logger.info("Received response from Anthropic API: %s", response)  # Log the response
+            
+            # Access the response content correctly
+            response_text = response.content[0].text  # Access the text from the first TextBlock
+            
             # Split response into three parts
-            lines = response.content[0].text.strip().split('\n')
+            lines = response_text.strip().split('\n')
             keyword = lines[0].strip().lower()
             importance = lines[1].strip().lower()
             summary = lines[2].strip() if len(lines) > 2 else description[:100] + "..."

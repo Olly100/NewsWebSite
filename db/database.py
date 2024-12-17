@@ -117,5 +117,17 @@ def get_rss_sources(db_name="news_ingestion.db"):
         sources = cursor.fetchall()
         return [source[0] for source in sources]
 
+def get_config_value(key: str, db_name="news_ingestion.db"):
+    """Fetch a configuration value from the app_config table."""
+    try:
+        with sqlite3.connect(db_name) as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT value FROM app_config WHERE key = ?', (key,))
+            result = cursor.fetchone()
+            return result[0] if result else None
+    except Exception as e:
+        logger.error(f"Error fetching config value for {key}: {e}")
+        return None
+
 if __name__ == "__main__":
     initialize_database()
